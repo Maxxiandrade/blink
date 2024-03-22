@@ -2,38 +2,39 @@
 import React, { useEffect, useState } from 'react';
 import useProfile from '../hooks/useProfile';
 
+// Definir un tipo para la información del usuario
+interface UserInfo {
+  nombre: string;
+  pronombres: string;
+  descripcion: string;
+  // Otras propiedades si las hay
+}
+
 const Profile = () => {
+  const [userInfo, setUserInfo] = useState<UserInfo[]>([]); // Especifica el tipo UserInfo[] para userInfo
   const { fetchData } = useProfile();
-  const [userData, setUserData] = useState(null);
-  let uid = localStorage.getItem('uid');
-  if (uid) {
-    uid = JSON.parse(uid)
-  }
-
+  const uid = localStorage.getItem('uid');
+  
   useEffect(() => {
-    const fetchDataAsync = async () => {
+    const fetchUserData = async () => {
       try {
-        const uid1 = uid // Asigna un valor válido a uid
-        if (!uid1) return; // Salir si uid es null o undefined
-
-        const data = await fetchData(uid1);
-        setUserData(data);
+        const data = await fetchData(uid);
+        setUserInfo(data);
       } catch (error) {
         console.error('Error al obtener la información del usuario:', error);
       }
     };
 
-    fetchDataAsync();
-  }, [fetchData]);
-
+    fetchUserData();
+  }, [fetchData, uid]);
+  
   return (
     <div>
-      {/* Renderiza los datos del usuario aquí */}
-      {userData && (
+      {Array.isArray(userInfo) && userInfo.length > 0 && (
         <>
-          <h1>{userData}</h1>
-          {/* <p>{userData.email}</p> */}
-          {/* Renderiza otros datos del usuario aquí */}
+          <h1>{userInfo[0]?.nombre}</h1>
+          <h2>({userInfo[0]?.pronombres})</h2>
+          <h2>{userInfo[0]?.descripcion}</h2>
         </>
       )}
     </div>

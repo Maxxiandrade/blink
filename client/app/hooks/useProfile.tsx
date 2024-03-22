@@ -4,7 +4,7 @@ import { useState } from "react"
 
 
 const useProfile = ()=>{
-    const [userInfo, setUserInfo] = useState([])
+
    
     const setProfile = async(info:object)=>{
         try {
@@ -17,7 +17,7 @@ const useProfile = ()=>{
         }
     }
 
-    const fetchData = async (uid: string) => {
+    const fetchData = async (uid: string | null) => {
         try {
             const response = await axios.get(`http://localhost:3001/getuserinfo?uid=${uid}`);    
             return response.data
@@ -25,7 +25,7 @@ const useProfile = ()=>{
             console.error('Error al obtener la información del usuario:', error);
         }
     }
-    return {setProfile, fetchData, userInfo}
+    return {setProfile, fetchData}
 }
 
 export default useProfile;
