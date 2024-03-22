@@ -1,14 +1,16 @@
 // Import the functions you need from the SDKs you need
+require('dotenv').config()
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 const admin = require('firebase-admin');
+const API_KEY = process.env.API_KEY
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDRu_Rsx7UxHy5yZxbCCKlI7cOeQMtt2ts",
+  apiKey: API_KEY,
   authDomain: "blink-ede74.firebaseapp.com",
   projectId: "blink-ede74",
   storageBucket: "blink-ede74.appspot.com",
