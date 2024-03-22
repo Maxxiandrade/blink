@@ -17,18 +17,24 @@ const useAuth = () => {
     localStorage.setItem('uid', uid)
     try {
       const result = await axios.get(`http://localhost:3001/getprofile?uid=${uid}`)
-      if(result){
+      console.log('Holaa');
+      
+      if(result.data == 'true'){
         localStorage.setItem('profile', 'true')
+      }else{
+        localStorage.setItem('profile','false')
       }
+      console.log(result.data);
       
     } catch (error) {
       console.log(error);
     }
-  
   };
 
   const logout = () => {
     localStorage.removeItem('isAuth');
+    localStorage.removeItem('profile');
+    localStorage.removeItem('uid');
     setIsAuth(false);
   };
 

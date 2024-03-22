@@ -15,16 +15,16 @@ const Home = () => {
       console.error('Error al cerrar sesión:', error);
     }
   };
-  useEffect(()=>{
-    const isAuth = localStorage.getItem('isAuth')
-    const profile = localStorage.getItem('profile')
+  const isAuth = localStorage.getItem('isAuth')
+  const profile = localStorage.getItem('profile')
+  useEffect(() => {
     if (!isAuth) {
       router.push('/');
     }
-    if(!profile){
+     if(profile == 'false'){
       router.push('/perfil/crearperfil')
     }
-  },[])
+  }, [profile]);
  
   return (
     <>

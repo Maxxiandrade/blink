@@ -33,8 +33,8 @@ const Recover = () => {
       
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        switch (error.response?.data) {
-          case "Error al recuperar contraseña. FirebaseError: Firebase: Error (auth/invalid-email).":
+        switch (error.response?.data?.code) {
+          case "auth/invalid-email":
             setAviso((prevState) => ({
               ...prevState,
               error: "Email no existente.",

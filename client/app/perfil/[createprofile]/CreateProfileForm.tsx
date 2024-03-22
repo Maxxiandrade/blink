@@ -28,7 +28,7 @@ const CreateProfileForm = () => {
   };
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault();   
     await setProfile(info)
     router.push('/')
   };

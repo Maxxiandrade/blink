@@ -52,8 +52,8 @@ const RegisterPage = () => {
       }));
     } catch (error) {
       if (axios.isAxiosError(error)) {
-       switch(error.response?.data){
-          case "Error al crear el usuario: FirebaseError: Firebase: Error (auth/email-already-in-use).":
+       switch(error.response?.data?.code){
+          case "auth/email-already-in-use":
             setFormData((prevState) => ({
               ...prevState,
               error: 'Este email ya está en uso.',

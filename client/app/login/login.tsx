@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import useAuth from "../hooks/useIsAuthed";
 import { useRouter } from "next/navigation";
+import useProfile from "../hooks/useProfile";
 
 const LoginPage = () => {
   const router = useRouter()
   const {login} = useAuth()
+  const {fetchData} = useProfile()
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -39,11 +41,12 @@ const LoginPage = () => {
         ...prevState,
       }));
       login(result.data)
+      fetchData(result.data)
       router.push('/')
     } catch (error) {
       if (axios.isAxiosError(error)) {
         switch (error.response?.data) {
-          case "Error al iniciar sesion FirebaseError: Firebase: Error (auth/invalid-credential).":
+          case 'Error al iniciar sesión: email no encontrado':
             setCredentials((prevState) => ({
               ...prevState,
               error: "Email o Contraseña incorrectos.",
