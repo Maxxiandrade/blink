@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-const {getAuth, createUserWithEmailAndPassword} = require('firebase/auth')
+const {getAuth, createUserWithEmailAndPassword, sendEmailVerification} = require('firebase/auth')
 const {db} = require('../../firebase-config')
 
 const postRegister = async(req:Request, res:Response)=>{
@@ -8,6 +8,7 @@ const postRegister = async(req:Request, res:Response)=>{
         const {email, password} = req.body;
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const uid = userCredential.user.uid;
+        await sendEmailVerification(userCredential.user)
         await db.collection('usuarios').doc(uid).set({
             email,
             uid,

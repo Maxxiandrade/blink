@@ -36,13 +36,25 @@ const LoginPage = () => {
         `Peticion enviada con credenciales ${user.email} y ${user.password}`
       );
       const result = await axios.post("http://localhost:3001/login", user);
-      console.log(result);
-      setCredentials((prevState) => ({
-        ...prevState,
-      }));
-      login(result.data)
-      fetchData(result.data)
-      router.push('/')
+      const emailVerified = await axios.get('http://localhost:3001/getverified')
+      console.log(emailVerified.data);
+      
+      if(emailVerified.data == true){
+       
+        console.log(result);
+        setCredentials((prevState) => ({
+          ...prevState,
+        }));
+        login(result.data)
+        fetchData(result.data)
+  
+        router.push('/')
+      }else{
+        setCredentials((prevState)=>({
+          ...prevState,
+          error: 'Verifica el mail para continuar'
+        }))
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         switch (error.response?.data) {

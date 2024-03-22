@@ -17,8 +17,6 @@ const useAuth = () => {
     localStorage.setItem('uid', uid)
     try {
       const result = await axios.get(`http://localhost:3001/getprofile?uid=${uid}`)
-      console.log('Holaa');
-      
       if(result.data == 'true'){
         localStorage.setItem('profile', 'true')
       }else{
@@ -38,7 +36,20 @@ const useAuth = () => {
     setIsAuth(false);
   };
 
-  return { isAuth, login, logout };
+  const verifyEmail = async()=>{
+    try {
+      const result = await axios.get('http://localhost:3001/getverified')
+      if(result.data == true){
+        localStorage.setItem('email', 'verified')
+      } else{
+        localStorage.setItem('email','false')
+      }
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+  return { isAuth, login, logout, verifyEmail };
 };
 
 export default useAuth;
