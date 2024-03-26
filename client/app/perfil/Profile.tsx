@@ -32,9 +32,11 @@ const Profile = () => {
     <div>
       {Array.isArray(userInfo) && userInfo.length > 0 && (
         <>
-          <h1>{userInfo[0]?.nombre}</h1>
-          <h2>({userInfo[0]?.pronombres})</h2>
+        <div className='border border-sky-100 justify-center item'>
+          <h1 className='text-4xl'>{userInfo[0]?.nombre}</h1>
+          <h2 className='text-3xl'>({userInfo[0]?.pronombres})</h2>
           <h2>{userInfo[0]?.descripcion}</h2>
+        </div>
         </>
       )}
     </div>

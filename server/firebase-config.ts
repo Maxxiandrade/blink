@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 require('dotenv').config()
+const {getFirestore} = require('firebase/firestore')
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 const admin = require('firebase-admin');
@@ -30,5 +31,5 @@ const app = initializeApp(firebaseConfig);
 
 const db = admin.firestore()
 const auth = getAuth(app)
-
-module.exports = {db, auth}
+const fs = getFirestore(app)
+module.exports = {db, auth, fs}

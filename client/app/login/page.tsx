@@ -8,6 +8,7 @@ const page = () => {
     <>
     {/* <Blink/> */}
     <RedirectAuthenticated>
+    <Blink/>
     <LoginPage/>
     </RedirectAuthenticated>
     </>

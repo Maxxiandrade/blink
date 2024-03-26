@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Home from "./Home";
 import Demo from "./Demo";
 import RedirectAuthenticated from "./RedirectAuthenticated";
 

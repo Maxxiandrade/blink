@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Blink from "../components/Blink";
 
 const links = [
   {
@@ -21,10 +22,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
       <html>
         <body>
         <nav>
+        <Blink/>
         <ul className="flex justify-center space-x-10">
             {links.map(({label, route})=>(
               <li key={route} className="hover:underline">

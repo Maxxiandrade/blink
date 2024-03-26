@@ -2,19 +2,14 @@
 import React, { useEffect } from 'react';
 import useAuth from '../hooks/useIsAuthed';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import CreatePost from './CreatePost';
 
 const Home = () => {
   const router = useRouter();
   const { logout } = useAuth();
   const uid = localStorage.getItem('uid')
-  const handleLogout =  () => {
-    try {
-       logout();
-      router.push('/');
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-    }
-  };
+  
   const isAuth = localStorage.getItem('isAuth')
   const profile = localStorage.getItem('profile')
   useEffect(() => {
@@ -26,8 +21,19 @@ const Home = () => {
     }
   }, [profile]);
  
+   const handleLogout = async()=>{
+    localStorage.removeItem('isAuth')
+    localStorage.removeItem('uid')
+    localStorage.removeItem('profile')
+     await axios.post('http://localhost:3001/logout')
+     router.push('/')
+   }
   return (
     <>
+    <div className='flex justify-center'>
+      <CreatePost/>
+    </div>
+    <br />
     <div className='flex justify-center '>
       <button className='size-96 bg-yellow-600' onClick={handleLogout}>Cerrar sesión</button>
       <br />

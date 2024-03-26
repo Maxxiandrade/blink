@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import RedirectAuthenticated from './RedirectAuthenticated';
+import Blink from './components/Blink';
 
 
 
@@ -10,6 +11,7 @@ const Demo = () => {
   return (
     <>
     <RedirectAuthenticated>
+    <Blink/>
     <div className="flex justify-left items-center mt-11 ">
       <div className="w-1/2 ml-5">
         <h1 className="text-2xl"><span className="text-yellow-300 hover:underline">B</span>link💡 es una plataforma de redes sociales diseñada para permitir a los usuarios compartir sus pensamientos, ideas y experiencias a través de publicaciones. Con una interfaz intuitiva y fácil de usar, <span className="text-yellow-300 hover:underline">B</span>link💡 ofrece a los usuarios la capacidad de compartir sus publicaciones, interactuar con otras personas y descubrir contenido interesante.</h1>
