@@ -4,6 +4,7 @@ import useAuth from '../hooks/useIsAuthed';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import CreatePost from './CreatePost';
+import ListOfPosts from './ListOfPosts';
 
 const Home = () => {
   const router = useRouter();
@@ -34,12 +35,15 @@ const Home = () => {
       <CreatePost/>
     </div>
     <br />
-    <div className='flex justify-center '>
+    <div className='flex justify-center'>
+      <ListOfPosts/>
+    </div>
+    <div className='flex justify-center'>
       <button className='size-96 bg-yellow-600' onClick={handleLogout}>Cerrar sesión</button>
       <br />
     </div>
-      {uid}
-    </>
+    {uid}
+  </>
   );
 };
 

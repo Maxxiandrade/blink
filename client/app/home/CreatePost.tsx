@@ -37,7 +37,7 @@ function CreatePost() {
   }
 
   return (
-    <form action="" className="flex">
+    <form action="" className="flex" onSubmit={handleSubmit}>
         <Image src="/avatar1.jpg" alt="" width={200} height={200} className="rounded-full h-14 w-14 mr-5"/>
       <textarea
         name="body"
@@ -49,7 +49,6 @@ function CreatePost() {
       {toggleForm && (
         <button
           className={`bg-yellow-500 p-3 ml-5 rounded-md text-black font-bold hover:scale-105 transition mb-5 `}
-          onClick={handleSubmit}
         >
           Postear
         </button>

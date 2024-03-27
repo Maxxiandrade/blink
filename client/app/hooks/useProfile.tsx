@@ -19,6 +19,7 @@ const useProfile = ()=>{
 
     const fetchData = async (uid: string | null) => {
         try {
+            
             const response = await axios.get(`http://localhost:3001/getuserinfo?uid=${uid}`);    
             return response.data
         } catch (error) {
